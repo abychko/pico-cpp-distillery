@@ -1,2 +1,3 @@
-# pico-c--distillery
-Pico-based controller for home distillery/brewery
+# pico-cpp-distillery
+Pico-based controller for home distillery/brewery.
+
