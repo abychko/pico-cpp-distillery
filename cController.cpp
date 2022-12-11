@@ -1,6 +1,5 @@
 #include "cController.hpp"
 #include <cstdlib>
-#include "translations.hpp"
 
 cController::cController() {
   Heater = std::make_unique<cHeaterRelay>();

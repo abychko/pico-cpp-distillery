@@ -2,7 +2,7 @@
 #define __cController_hpp__
 
 #include <hardware/i2c.h>
-#include "cDisplay.hpp"
+#include <cDisplay.hpp>
 #include "cHeaterRelay.hpp"
 #include <memory>
 

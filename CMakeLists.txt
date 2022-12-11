@@ -20,27 +20,11 @@ project(
 )
 
 if(NOT CMAKE_BUILD_TYPE)
-  set(CMAKE_BUILD_TYPE MinSizeRel)
+  set(CMAKE_BUILD_TYPE Release)
 endif()
 
-pico_sdk_init()
-
-add_subdirectory(onewire)
-
-set(SOURCES
-    main.cpp
-    cController.cpp
-    cCurrentSensor.cpp
-    cDisplay.cpp
-    LCD_I2C.cpp
-    cHeaterRelay.cpp
-    cRelay.cpp
-    )
-
-add_executable(${PROJECT_NAME}-${PROG_VERSION} ${SOURCES})
-
 # hardware configuration and connected pins
-target_compile_definitions(${PROJECT_NAME}-${PROG_VERSION}
+add_compile_definitions(${PROJECT_NAME}-${PROG_VERSION}
   PRIVATE
   PICO_FLOAT_SUPPORT_ROM_V1=0 PICO_DOUBLE_SUPPORT_ROM_V1=0
   LANG_RUSSIAN # comment/delete to have English messages
@@ -55,12 +39,30 @@ target_compile_definitions(${PROJECT_NAME}-${PROG_VERSION}
   LCD_ADDRESS=0x38
   I2C_SPEED=100000
 )
-
+#
+pico_sdk_init()
+#
+include_directories(onewire)
+include_directories(display)
+#
+add_subdirectory(onewire)
+add_subdirectory(display)
+#
+set(SOURCES
+    main.cpp
+    cController.cpp
+    cCurrentSensor.cpp
+    cHeaterRelay.cpp
+    cRelay.cpp
+    )
+#
+add_executable(${PROJECT_NAME}-${PROG_VERSION} ${SOURCES})
+#
 pico_set_program_name(${PROJECT_NAME}-${PROG_VERSION} "${PROJECT_NAME}")
 pico_set_program_version(${PROJECT_NAME}-${PROG_VERSION} "${PROG_VERSION}")
 pico_enable_stdio_usb(${PROJECT_NAME}-${PROG_VERSION} 1)
 pico_enable_stdio_uart(${PROJECT_NAME}-${PROG_VERSION} 0)
-
+#
 # TODO
 # Load uf2 to RAM instead of flash
 pico_set_binary_type(${PROJECT_NAME}-${PROG_VERSION} no_flash)
@@ -78,5 +80,6 @@ target_link_libraries(${PROJECT_NAME}-${PROG_VERSION}
   hardware_i2c
   hardware_adc
   pico_onewire
+  pico_display
 )
 pico_add_extra_outputs(${PROJECT_NAME}-${PROG_VERSION})

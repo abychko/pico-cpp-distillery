@@ -1,16 +1,16 @@
 #ifndef __cDisplay_hpp__
 #define __cDisplay_hpp__
 
-#include <hardware/i2c.h>
+#include "hardware/i2c.h"
 #include "LCD_I2C.hpp"
 #include <memory>
 
 #ifndef LCD_SDA_PIN
-#define LCD_SDA_PIN PICO_DEFAULT_I2C_SDA_PIN;
+#define LCD_SDA_PIN PICO_DEFAULT_I2C_SDA_PIN
 #endif
 
 #ifndef LCD_SCL_PIN
-#define LCD_SCL_PIN PICO_DEFAULT_I2C_SCL_PIN;
+#define LCD_SCL_PIN PICO_DEFAULT_I2C_SCL_PIN
 #endif
 
 // Display 20x4 I2C (Hitachi HD44780 - like)
