@@ -20,10 +20,12 @@ project(
 )
 
 if(NOT CMAKE_BUILD_TYPE)
-  set(CMAKE_BUILD_TYPE Release)
+  set(CMAKE_BUILD_TYPE MinSizeRel)
 endif()
 
 pico_sdk_init()
+
+add_subdirectory(onewire)
 
 set(SOURCES
     main.cpp
@@ -75,5 +77,6 @@ target_link_libraries(${PROJECT_NAME}-${PROG_VERSION}
   pico_stdlib
   hardware_i2c
   hardware_adc
+  pico_onewire
 )
 pico_add_extra_outputs(${PROJECT_NAME}-${PROG_VERSION})

@@ -6,3 +6,10 @@ elf2uf2
 pico-sdk
 pioasm
 generated
+*.a
+*.bin
+*.dis
+*.elf
+*.hex
+*.uf2
+*.map
