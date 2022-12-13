@@ -4,6 +4,7 @@
 cController::cController() {
   Heater = std::make_unique<cHeaterRelay>();
   LCD    = std::make_unique<cDisplay>();
+  thermometer    = std::make_unique<cDS18B20>();
   }
 
 
@@ -15,7 +16,8 @@ cController::~cController() {
 bool
 cController::Init() {
 //  LCD->Init();
-  Heater->Start();
+//  Heater->Start();
+  thermometer->Init();
   return true;
   }
 

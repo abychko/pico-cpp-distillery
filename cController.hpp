@@ -4,6 +4,7 @@
 #include <hardware/i2c.h>
 #include <cDisplay.hpp>
 #include "cHeaterRelay.hpp"
+#include <cDS18B20.hpp>
 #include <memory>
 
 class cController
@@ -16,5 +17,6 @@ class cController
   private:
     std::unique_ptr<cHeaterRelay>   Heater;
     std::unique_ptr<cDisplay>       LCD;
+    std::unique_ptr<cDS18B20>       thermometer;
   };
 #endif

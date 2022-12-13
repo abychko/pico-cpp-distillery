@@ -6,7 +6,7 @@ cHeaterRelay::cHeaterRelay() {
   gpio_init(HEATER_PIN);
   gpio_set_dir(HEATER_PIN, GPIO_OUT);
 
-  AmpMeter = std::make_unique<cCurrentSensor>();
+//  AmpMeter = std::make_unique<cCurrentSensor>();
 
   }
 
@@ -15,14 +15,14 @@ cHeaterRelay::~cHeaterRelay() {
 
   }
 
-
+/*
 float
 cHeaterRelay::getCurrent() {
   float amp = 0;
 
   return amp;
   }
-
+*/
 
 void
 cHeaterRelay::Start() {
