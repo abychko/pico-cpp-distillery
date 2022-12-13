@@ -4,12 +4,12 @@ set(DISPLAY_SOURCES
   LCD_I2C.cpp
   )
 
-add_library(pico_display
+add_library(hd_display
   STATIC
   ${DISPLAY_SOURCES}
   )
 
-target_compile_definitions(pico_display
+target_compile_definitions(hd_display
   PRIVATE
   LCD_SDA_PIN=${LCD_SDA_PIN} LCD_SCL_PIN=${LCD_SCL_PIN}
   LCD_MAX_CHARS=${LCD_MAX_CHARS} LCD_MAX_LINES=${LCD_MAX_LINES}
@@ -18,7 +18,7 @@ target_compile_definitions(pico_display
   LANG_RUSSIAN # comment/delete to have English messages
 )
 
-target_link_libraries(pico_display
+target_link_libraries(hd_display
   hardware_i2c
   pico_stdlib
   )

@@ -1,7 +1,7 @@
 #ifndef __cDS18B20_cpp__
 #define __cDS18B20_cpp__
 
-#include "onewire.h"
+#include <onewire.h>
 #include <memory>
 
 #ifndef ONEWIRE_PIN

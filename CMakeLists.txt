@@ -38,6 +38,8 @@ set(HEATING_POWER 1500)      # heater power in normal mode
 set(AC_VOLTAGE 220)
 set(AC_FREQUENCY 50)
 #
+set(ONEWIRE_PIN 15) # for DS18B20 temperature sensor
+#
 pico_sdk_init()
 #
 include_directories(${CMAKE_CURRENT_SOURCE_DIR})
@@ -76,9 +78,9 @@ target_link_libraries(${PROJECT_NAME}-${PROG_VERSION}
   pico_stdlib
   hardware_i2c
   hardware_adc
-  pico_ds18b20
-  pico_display
-  pico_heater
+  hd_ds18b20
+  hd_display
+  hd_heater
 )
 #
 pico_add_extra_outputs(${PROJECT_NAME}-${PROG_VERSION})
