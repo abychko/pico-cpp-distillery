@@ -208,7 +208,7 @@ bool One_wire::search_rom_find_next() {
           else {
             if (rom_bit_index > _last_discrepancy) {
               search_ROM[byte_counter] =
-                                                  // Set ROM bit to zero
+// Set ROM bit to zero
                 search_ROM[byte_counter] & ~bit_mask;
               discrepancy_marker = rom_bit_index;
               }
@@ -405,7 +405,7 @@ bool One_wire::set_resolution(rom_address_t &address, unsigned int resolution) {
       resolution = resolution - 9;
       if (resolution < 4) {
         resolution = resolution << 5;             // align the bits
-                                                  // mask out old data, insert new
+// mask out old data, insert new
         ram[4] = (uint8_t) ((ram[4] & 0x60) | resolution);
         write_scratch_pad(address, (ram[2] << 8) + ram[3]);
         answer = true;

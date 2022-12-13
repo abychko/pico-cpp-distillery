@@ -25,7 +25,7 @@
 #endif
 
 #ifdef DEBUG
-#include "debug.hpp"
+#include <debug.hpp>
 #pragma message(VAR_NAME_VALUE(LCD_SDA_PIN))
 #pragma message(VAR_NAME_VALUE(LCD_SCL_PIN))
 #pragma message(VAR_NAME_VALUE(LCD_MAX_CHARS))

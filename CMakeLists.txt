@@ -40,12 +40,13 @@ set(AC_FREQUENCY 50)
 #
 pico_sdk_init()
 #
-include_directories(onewire)
+include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 include_directories(display)
+include_directories(ds18b20)
 include_directories(heater)
 #
-add_subdirectory(onewire)
 add_subdirectory(display)
+add_subdirectory(ds18b20)
 add_subdirectory(heater)
 #
 set(SOURCES
@@ -75,7 +76,7 @@ target_link_libraries(${PROJECT_NAME}-${PROG_VERSION}
   pico_stdlib
   hardware_i2c
   hardware_adc
-  pico_onewire
+  pico_ds18b20
   pico_display
   pico_heater
 )

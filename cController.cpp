@@ -1,5 +1,6 @@
 #include "cController.hpp"
 #include <cstdlib>
+#include <cstdio>
 
 cController::cController() {
   Heater = std::make_unique<cHeaterRelay>();
@@ -24,6 +25,8 @@ cController::Init() {
 
 int
 cController::Run() {
-
+  while (true) {
+    printf("Temperature: %3.2f\n", thermometer->getTemp());
+    }
   return EXIT_SUCCESS;
   }

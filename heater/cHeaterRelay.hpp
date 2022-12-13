@@ -34,7 +34,7 @@ uint constexpr HALF_CYCLE = (AC_FREQUENCY * 2);
 /* 1000ms / 100 = 10ms */
 uint constexpr HALF_CYCLE_TIME = (1000/HALF_CYCLE);
 
-class cHeaterRelay //: public cRelay
+class cHeaterRelay                                //: public cRelay
   {
   public:
     cHeaterRelay();
