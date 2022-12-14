@@ -43,17 +43,18 @@ set(ONEWIRE_PIN 15) # for DS18B20 temperature sensor
 pico_sdk_init()
 #
 include_directories(${CMAKE_CURRENT_SOURCE_DIR})
+include_directories(controller)
 include_directories(display)
 include_directories(ds18b20)
 include_directories(heater)
 #
+add_subdirectory(controller)
 add_subdirectory(display)
 add_subdirectory(ds18b20)
 add_subdirectory(heater)
 #
 set(SOURCES
     main.cpp
-    cController.cpp
     cCurrentSensor.cpp
     cRelay.cpp
     )
@@ -76,11 +77,8 @@ endif()
 #
 target_link_libraries(${PROJECT_NAME}-${PROG_VERSION}
   pico_stdlib
-  hardware_i2c
   hardware_adc
-  hd_ds18b20
-  hd_display
-  hd_heater
+  hd_controller
 )
 #
 pico_add_extra_outputs(${PROJECT_NAME}-${PROG_VERSION})

@@ -1,5 +1,4 @@
 #include "cController.hpp"
-#include <cstdlib>
 #include <cstdio>
 
 cController::cController() {
@@ -23,10 +22,9 @@ cController::Init() {
   }
 
 
-int
+void
 cController::Run() {
   while (true) {
     printf("Temperature: %3.2f\n", thermometer->getTemp());
     }
-  return EXIT_SUCCESS;
   }

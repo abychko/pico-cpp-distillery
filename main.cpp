@@ -15,5 +15,7 @@ main(void) {
     return EXIT_FAILURE;
     }
 
-  return ctl->Run();
+  ctl->Run();
+
+  return EXIT_SUCCESS;
   }
