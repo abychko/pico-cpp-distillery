@@ -8,9 +8,8 @@
 //
 
 cController::cController() {
-  mHeater = std::make_unique<cHeaterRelay>();
   mDisplay    = std::make_unique<cDisplay>();
-  mDS18B20    = std::make_unique<cDS18B20>();
+  mMode = NULL;
   }
 
 
@@ -22,14 +21,7 @@ cController::~cController() {
 bool
 cController::Init() {
 //  mDisplay->Init();
-//  Heater->Init();
-//  thermometer->Init();
-/*
-  if (!Heater->Init()){
-    auto err = Heater->getStatus();
-    shutdownSystem(err);
-  }
-*/
+
   return true;
   }
 
@@ -45,10 +37,15 @@ cController::Run() {
   auto mode = mDisplay->selectMode();
   switch (mode) {
     case eDistillation1:
+      mMode = std::make_unique<cDistMode1>();
       break;
     case eDistillation2:
+      mMode = std::make_unique<cDistMode2>();
       break;
     default:
       break;
+    }
+  if(mMode) {
+    mMode->Start();
     }
   }

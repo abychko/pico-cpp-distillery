@@ -9,7 +9,7 @@ main(void) {
 
   stdio_init_all();
 
-  std::shared_ptr<cController> ctl = std::make_shared<cController>();
+  std::unique_ptr<cController> ctl = std::make_unique<cController>();
 
   if (! ctl->Init()) {
     return EXIT_FAILURE;

@@ -5,5 +5,7 @@ enum eWorkmodes
   {
   eDistillation1,
   eDistillation2,
+  eRectification1,
+  eRectification2
   };
 #endif

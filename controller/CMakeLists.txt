@@ -1,8 +1,11 @@
 
 set(CONTROLLER_SOURCES
-  cController.cpp
+  cMode.cpp
   cDistMode1.cpp
   cDistMode2.cpp
+  cRectMode1.cpp
+  cRectMode2.cpp
+  cController.cpp
   )
 
 add_library(hd_controller
@@ -12,6 +15,7 @@ add_library(hd_controller
 
 #target_compile_definitions(hd_controller
 #  PRIVATE
+#  DIST1STOP=98
 #)
 
 target_link_libraries(hd_controller

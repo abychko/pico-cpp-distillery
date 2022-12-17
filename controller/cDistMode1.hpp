@@ -6,6 +6,7 @@
 class cDistMode1 : public cMode
   {
   public:
+    void Start();
   private:
   };
 #endif
