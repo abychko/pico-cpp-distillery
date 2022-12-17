@@ -1,6 +1,8 @@
 
 set(CONTROLLER_SOURCES
   cController.cpp
+  cDistMode1.cpp
+  cDistMode2.cpp
   )
 
 add_library(hd_controller

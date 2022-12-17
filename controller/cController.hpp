@@ -14,8 +14,8 @@ class cController
     bool Init();
     void Run();
   private:
-    std::unique_ptr<cHeaterRelay>   Heater;
-    std::unique_ptr<cDisplay>       LCD;
-    std::unique_ptr<cDS18B20>       thermometer;
+    std::unique_ptr<cHeaterRelay>   mHeater;
+    std::unique_ptr<cDisplay>       mDisplay;
+    std::unique_ptr<cDS18B20>       mDS18B20;
   };
 #endif

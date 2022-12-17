@@ -4,6 +4,7 @@
 #include "hardware/i2c.h"
 #include "LCD_I2C.hpp"
 #include <memory>
+#include <eWorkmodes.hpp>
 
 #ifndef LCD_SDA_PIN
 #define LCD_SDA_PIN PICO_DEFAULT_I2C_SDA_PIN
@@ -24,21 +25,13 @@
 #define LCD_ADDRESS 0x38
 #endif
 
-#ifdef DEBUG
-#include <debug.hpp>
-#pragma message(VAR_NAME_VALUE(LCD_SDA_PIN))
-#pragma message(VAR_NAME_VALUE(LCD_SCL_PIN))
-#pragma message(VAR_NAME_VALUE(LCD_MAX_CHARS))
-#pragma message(VAR_NAME_VALUE(LCD_MAX_LINES))
-#pragma message(VAR_NAME_VALUE(LCD_ADDRESS))
-#endif
-
 class cDisplay
   {
   public:
     cDisplay();
     ~cDisplay();
     void Init();
+    eWorkmodes selectMode();
   private:
     std::unique_ptr<LCD_I2C> display;
   };

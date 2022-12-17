@@ -26,3 +26,9 @@ cDisplay::Init() {
     sleep_ms(500);
     }
   }
+
+
+eWorkmodes
+cDisplay::selectMode() {
+  return eDistillation1;
+  }
