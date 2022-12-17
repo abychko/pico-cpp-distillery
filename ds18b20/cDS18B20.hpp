@@ -3,6 +3,8 @@
 
 #include <onewire.h>
 #include <memory>
+#include <deque>
+#include "pico/float.h"
 
 #ifndef ONEWIRE_PIN
 #define ONEWIRE_PIN 15
@@ -17,5 +19,6 @@ class cDS18B20
   private:
     std::unique_ptr<One_wire> OneWire;
     rom_address_t address{};
+    std::deque<float> _t_values;
   };
 #endif

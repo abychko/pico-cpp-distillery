@@ -9,13 +9,8 @@ main(void) {
 
   stdio_init_all();
 
-  std::unique_ptr<cController> ctl = std::make_unique<cController>();
-
-  if (! ctl->Init()) {
-    return EXIT_FAILURE;
-    }
-
-  ctl->Run();
+  std::unique_ptr<cController> cCtl = std::make_unique<cController>();
+  cCtl->Run();
 
   return EXIT_SUCCESS;
   }

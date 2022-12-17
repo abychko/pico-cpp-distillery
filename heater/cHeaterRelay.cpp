@@ -2,7 +2,8 @@
 #include <cstdio>
 
 cHeaterRelay::cHeaterRelay() {
-  relayPin = HEATER_PIN;
+  _power = 0;
+  _can_run = false;
   gpio_init(HEATER_PIN);
   gpio_set_dir(HEATER_PIN, GPIO_OUT);
 
@@ -24,11 +25,14 @@ cHeaterRelay::getCurrent() {
   return amp;
   }
 */
+void
+cHeaterRelay::setPower(uint power) {
+  _power = power;
+  }
+
 
 void
-cHeaterRelay::Start() {
-#ifdef HEATER_MODE_BRESENHAM
-
+cHeaterRelay::StartBresenham() {
   int error = 0;
   int value = 0;
   int flag = 0;
@@ -59,5 +63,4 @@ cHeaterRelay::Start() {
     gpio_put(HEATER_PIN, flag);
     sleep_ms(HALF_CYCLE_TIME);
     }                                             // while(true)
-#endif
   }

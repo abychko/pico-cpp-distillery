@@ -13,10 +13,10 @@ add_library(hd_controller
   ${CONTROLLER_SOURCES}
   )
 
-#target_compile_definitions(hd_controller
-#  PRIVATE
-#  DIST1STOP=98
-#)
+target_compile_definitions(hd_controller
+  PRIVATE
+  HEATER_PIN=${HEATER_PIN}
+)
 
 target_link_libraries(hd_controller
   hardware_i2c

@@ -29,6 +29,8 @@
 #define AC_FREQUENCY 50
 #endif
 
+constexpr float _h_resistance = 15.6;             // heater resistance in Omhs
+
 // Calculated values
 uint constexpr HALF_CYCLE = (AC_FREQUENCY * 2);
 /* 1000ms / 100 = 10ms */
@@ -39,11 +41,13 @@ class cHeaterRelay                                //: public cRelay
   public:
     cHeaterRelay();
     ~cHeaterRelay();
+    void StartBresenham();
     void Start();
+    void setPower(uint);
 //    float getCurrent();
 
   private:
-    uint relayPin;
-//    std::unique_ptr<cCurrentSensor> AmpMeter;
+    uint _power;
+    bool _can_run;
   };
 #endif

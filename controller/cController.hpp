@@ -4,17 +4,13 @@
 #include <memory>
 //
 #include <cDisplay.hpp>
-
-#include <cDistMode1.hpp>
-#include <cDistMode2.hpp>
+#include <cMode.hpp>
 //
 
 class cController
   {
   public:
     cController();
-    ~cController();
-    bool Init();
     void Run();
   private:
     std::unique_ptr<cDisplay>       mDisplay;

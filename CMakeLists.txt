@@ -13,7 +13,7 @@ set(PICO_DEFAULT_DOUBLE_IMPL pico_double_pico)
 include($ENV{PICO_SDK_PATH}/external/pico_sdk_import.cmake)
 #
 project(
-  HomeDistillery
+  SmartDistillery
   VERSION ${PROG_VERSION}
   DESCRIPTION "Pico-based controller for home distillery/brewery"
   LANGUAGES ASM C CXX
