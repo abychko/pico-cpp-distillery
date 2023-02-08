@@ -12,11 +12,20 @@
 cController::cController() {
   mDisplay    = std::make_unique<cDisplay>();
   mMode = NULL;
+
   }
 
+void
+cController::turnOnLED() {
+  const uint LED_PIN = PICO_DEFAULT_LED_PIN;
+  gpio_init(LED_PIN);
+  gpio_set_dir(LED_PIN, GPIO_OUT);
+  gpio_put(LED_PIN, _on);
+}
 
 void
 cController::Run() {
+  turnOnLED();
   auto mode = mDisplay->selectMode();
   switch (mode) {
     case eDistillation1:

@@ -21,12 +21,16 @@ cDS18B20::getTemp() {
   OneWire->convert_temperature(address, true, false);
   float _val = OneWire->temperature(address);
   _t_values.push_back(_val);
+
+  // leave only 5 latest values
   while(_t_values.size() > 5) {
     _t_values.pop_front();
     }
+
   float _sum = 0;
   for (auto it = _t_values.cbegin(); it != _t_values.cend(); ++it) {
     _sum += *it;
     }
-  return std::roundf(_sum/_t_values.size() * 100) / 100; // a hack to round float value to %.2f
+  // a hack to round float value to %.2f
+  return std::roundf(_sum/_t_values.size() * 100) / 100;
   }
