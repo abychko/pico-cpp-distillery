@@ -22,6 +22,8 @@ project(
 if(NOT CMAKE_BUILD_TYPE)
   set(CMAKE_BUILD_TYPE Release)
 endif()
+# delete it to have English messages
+add_definitions(-DLANG_RUSSIAN)
 #
 # hardware configuration and connected pins
 set(LCD_SDA_PIN 4)
@@ -33,9 +35,9 @@ set(LCD_ADDRESS 0x38)
 set(I2C_SPEED 100000)
 #
 set(HEATER_PIN 13)
-set(HEATING_POWER_MAX 3000)  # max heater power in Watts
-set(HEATING_POWER 1500)      # heater power in normal mode
-set(AC_VOLTAGE 220)
+set(HEATING_POWER_MAX 3000)  # max heating power in Watts
+set(HEATING_POWER 1500)      # normal heating power
+set(AC_VOLTAGE 220)          # actually it's RMS, please note
 set(AC_FREQUENCY 50)
 #
 set(ONEWIRE_PIN 15) # for DS18B20 temperature sensor
@@ -67,12 +69,11 @@ pico_enable_stdio_usb(${PROJECT_NAME}-${PROG_VERSION} 1)
 pico_enable_stdio_uart(${PROJECT_NAME}-${PROG_VERSION} 0)
 #
 if(CMAKE_BUILD_TYPE STREQUAL "Debug")
+  add_definitions(-DDEBUG)
+  set(CMAKE_VERBOSE_MAKEFILE ON)
+  set(PICO_DEOPTIMIZED_DEBUG 1)
   # Load uf2 to RAM instead of flash
   pico_set_binary_type(${PROJECT_NAME}-${PROG_VERSION} no_flash)
-  #  set(CMAKE_VERBOSE_MAKEFILE ON)
-  set(PICO_DEOPTIMIZED_DEBUG ON)
-  add_compile_options(-Wall -Wextra)
-  add_compile_definitions(DEBUG)
 endif()
 #
 target_link_libraries(${PROJECT_NAME}-${PROG_VERSION}

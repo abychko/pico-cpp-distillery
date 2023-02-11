@@ -10,6 +10,14 @@
 #define ONEWIRE_PIN 15
 #endif
 
+#ifndef t_vector_size
+#define t_vector_size 8
+#endif
+
+#ifndef SENSOR_RES
+#define SENSOR_RES 12
+#endif
+
 class cDS18B20
   {
   public:

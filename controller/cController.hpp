@@ -3,10 +3,8 @@
 //
 #include <memory>
 //
-#include <cDisplay.hpp>
 #include <cMode.hpp>
 //
-
 class cController
   {
   public:
@@ -14,7 +12,7 @@ class cController
     void Run();
     void turnOnLED();
   private:
-    std::unique_ptr<cDisplay> mDisplay;
     std::unique_ptr<cMode>    mMode;
+    std::shared_ptr<cDisplay> mDisplay;
   };
 #endif

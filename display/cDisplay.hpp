@@ -6,6 +6,12 @@
 #include <memory>
 #include <eWorkmodes.hpp>
 
+#ifdef LANG_RUSSIAN
+#define INIT_MESSAGE "\xA5\xBD\xB8\xE5\xB8\x61\xBB\xB8\xB7\x61\xE5\xB8\xC7\x10"
+#else
+#define INIT_MESSAGE "Initialization\x10"
+#endif
+
 #ifndef LCD_SDA_PIN
 #define LCD_SDA_PIN PICO_DEFAULT_I2C_SDA_PIN
 #endif
@@ -29,9 +35,10 @@ class cDisplay
   {
   public:
     cDisplay();
-    ~cDisplay();
     void Init();
     eWorkmodes selectMode();
+    void clear();
+    void printLine(int line, int pos, const char* text);
   private:
     std::unique_ptr<LCD_I2C> display;
   };

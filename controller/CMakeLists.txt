@@ -1,4 +1,4 @@
-
+#
 set(CONTROLLER_SOURCES
   cMode.cpp
   cDistMode1.cpp
@@ -7,17 +7,17 @@ set(CONTROLLER_SOURCES
   cRectMode2.cpp
   cController.cpp
   )
-
+#
 add_library(hd_controller
   STATIC
   ${CONTROLLER_SOURCES}
   )
-
+#
 target_compile_definitions(hd_controller
   PRIVATE
   HEATER_PIN=${HEATER_PIN}
 )
-
+#
 target_link_libraries(hd_controller
   hardware_i2c
   pico_stdlib

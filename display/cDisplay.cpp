@@ -1,5 +1,4 @@
 #include "cDisplay.hpp"
-#include "translations.hpp"
 
 cDisplay::cDisplay() {
   LCD_I2C_Setup (i2c_default, LCD_SDA_PIN, LCD_SCL_PIN, I2C_SPEED);
@@ -7,7 +6,16 @@ cDisplay::cDisplay() {
   }
 
 
-cDisplay::~cDisplay() {
+void
+cDisplay::clear() {
+  display->clear();
+  }
+
+
+void
+cDisplay::printLine(int line, int pos, const char* text) {
+  display->setCursor(line, pos);
+  display->writeString(text, false);
   }
 
 
@@ -16,8 +24,7 @@ cDisplay::Init() {
 
   display->clear();
   sleep_ms(2000);
-  display->setCursor(1, 3);
-  display->writeString(INIT_MESSAGE, true);
+  printLine(1,3,INIT_MESSAGE);
 
   for (int i=0; i<10; i++) {
     display->setBacklight(1);
@@ -25,6 +32,7 @@ cDisplay::Init() {
     display->setBacklight(0);
     sleep_ms(500);
     }
+  display->setBacklight(1);
   }
 
 

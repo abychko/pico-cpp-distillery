@@ -15,7 +15,6 @@ target_compile_definitions(hd_display
   LCD_MAX_CHARS=${LCD_MAX_CHARS} LCD_MAX_LINES=${LCD_MAX_LINES}
   LCD_ADDRESS=${LCD_ADDRESS}
   I2C_SPEED=${I2C_SPEED}
-  LANG_RUSSIAN # comment/delete to have English messages
 )
 
 target_link_libraries(hd_display
