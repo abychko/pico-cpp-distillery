@@ -13,6 +13,14 @@ cDisplay::clear() {
 
 
 void
+cDisplay::clearLine(int line) {
+  char space[LCD_MAX_CHARS] = {" "};
+  display->setCursor(line, 0);
+  display->writeString(space, false);
+  }
+
+
+void
 cDisplay::printLine(int line, int pos, const char* text) {
   display->setCursor(line, pos);
   display->writeString(text, false);

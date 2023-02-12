@@ -4,7 +4,7 @@
 #include "hardware/i2c.h"
 #include "LCD_I2C.hpp"
 #include <memory>
-#include <eWorkmodes.hpp>
+#include <eWorkmode.hpp>
 
 #ifdef LANG_RUSSIAN
 #define INIT_MESSAGE "\xA5\xBD\xB8\xE5\xB8\x61\xBB\xB8\xB7\x61\xE5\xB8\xC7\x10"
@@ -37,7 +37,8 @@ class cDisplay
     cDisplay();
     void Init();
     eWorkmodes selectMode();
-    void clear();
+    void clear(void);
+    void clearLine(int line);
     void printLine(int line, int pos, const char* text);
   private:
     std::unique_ptr<LCD_I2C> display;

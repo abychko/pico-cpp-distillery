@@ -2,7 +2,7 @@
 #include <cstdio>
 //
 #include "cController.hpp"
-#include <eWorkmodes.hpp>
+#include <eWorkmode.hpp>
 #include <cDistMode1.hpp>
 #include <cDistMode2.hpp>
 #include <cRectMode1.hpp>
@@ -48,5 +48,6 @@ cController::Run() {
   if(mMode) {
     mMode->setDisplay(mDisplay);
     mMode->Start();
+    mMode->Stop();
     }
   }

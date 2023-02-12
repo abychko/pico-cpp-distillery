@@ -30,7 +30,11 @@ cDS18B20::getTemp() {
   float _sum = 0;
   for (auto it = _t_values.cbegin(); it != _t_values.cend(); it++) {
     _sum += *it;
+#ifdef DEBUG
+    printf("In _t_values vector: %.2f\n", *it);
+#endif
     }
+  return _sum/_t_values.size();
 // a hack to round float value to %.2f
-  return std::roundf(_sum/_t_values.size() * 100) / 100;
+//  return std::roundf(_sum/_t_values.size() * 100) / 100;
   }

@@ -9,23 +9,20 @@ cDistMode1::cDistMode1() {
 
 void
 cDistMode1::Start() {
+  mStatus = eRUNNING;
   gpio_put(HEATER_PIN, _on);
   lcd_display->clear();
   lcd_display->printLine(0, 0, DIST1MODE);
-
-  char temp[6];
-
+  fillDisplayFields();
   while(currentTemp < stopTemp) {
-    currentTemp = mDS18B20->getTemp();
-    lcd_display->printLine(1, 0, TEMP);
-    memset(temp, 0, sizeof(temp));
-    sprintf(temp, "%.2f", currentTemp);
-    lcd_display->printLine(1, sizeof(TEMP), temp);
+    updateTemp();
+    updatePower();
+    updateStatus();
 #ifdef DEBUG
     printValues();
 #endif
     }
   gpio_put(HEATER_PIN, _off);
-  lcd_display->clear();
-  lcd_display->printLine(0, 0, DIST1MODE);
+  mStatus = eSUCCESS;
+  updateStatus();
   }
