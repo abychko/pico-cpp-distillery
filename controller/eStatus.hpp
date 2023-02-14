@@ -5,6 +5,7 @@ enum eStatus
   {
   eWAITING,
   eRUNNING,
+  eFINISHING,
   eSUCCESS,
   eDS18B20Err,
   eHeaterErr

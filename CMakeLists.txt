@@ -42,6 +42,11 @@ set(AC_FREQUENCY 50)
 #
 set(ONEWIRE_PIN 15) # for DS18B20 temperature sensor
 #
+set(COOLING_VALVE ON)
+if(COOLING_VALVE)
+  add_definitions(-DCOOLING_VALVE)
+endif()
+#
 pico_sdk_init()
 #
 include_directories(${CMAKE_CURRENT_SOURCE_DIR})

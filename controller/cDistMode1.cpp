@@ -2,7 +2,7 @@
 #include <cstdio>
 
 cDistMode1::cDistMode1() {
-  stopTemp = 50.0;
+  stopTemp = 100.0;
   currentTemp = mDS18B20->getTemp();
   }
 
@@ -15,9 +15,9 @@ cDistMode1::Start() {
     updateTemp();
     updatePower();
     updateStatus();
+    if(mStatus != eRUNNING) {return;}
 #ifdef DEBUG
     printValues();
 #endif
     }
-  mStatus = eSUCCESS;
   }

@@ -49,6 +49,9 @@ cMode::updateStatus() {
     case eRUNNING:
       lcd_display->printLine(3, sizeof(STATUS), RUNNINGSTR);
       break;
+    case eFINISHING:
+      lcd_display->printLine(3, sizeof(STATUS), FINISHING);
+      break;
     case eSUCCESS:
       lcd_display->printLine(3, sizeof(STATUS), FINISHED);
       break;
@@ -65,11 +68,28 @@ cMode::Start() {
   lcd_display->clear();
   fillDisplayFields();
 }
+#ifdef COOLING_VALVE
+void
+cMode::turnOffCooling(){
+
+}
+#endif
 
 void
 cMode::Stop() {
   gpio_put(HEATER_PIN, _off);
+  if (mStatus == eRUNNING) {mStatus = eFINISHING;}
   updateStatus();
+#ifdef COOLING_VALVE
+  for(int i=0; i<120; i++) {
+    sleep_ms(500);
+    updatePower();
+    updateTemp();
+  }
+  turnOffCooling();
+  mStatus = eSUCCESS;
+  updateStatus();
+#endif
   while(true) {
     updatePower();
     updateTemp();
