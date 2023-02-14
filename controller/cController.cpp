@@ -10,7 +10,7 @@
 //
 
 cController::cController() {
-  mDisplay    = std::make_unique<cDisplay>();
+  mDisplay    = std::make_shared<cDisplay>();
   mMode = NULL;
   }
 

@@ -50,7 +50,7 @@ cMode::updateStatus() {
       lcd_display->printLine(3, sizeof(STATUS), RUNNINGSTR);
       break;
     case eSUCCESS:
-      lcd_display->printLine(3, sizeof(STATUS), COMPLETED_SUCCESSFULLY);
+      lcd_display->printLine(3, sizeof(STATUS), FINISHED);
       break;
     default:
       lcd_display->printLine(3, sizeof(STATUS), "N/A");
@@ -59,9 +59,19 @@ cMode::updateStatus() {
 }
 
 void
+cMode::Start() {
+  gpio_put(HEATER_PIN, _on);
+  mStatus = eRUNNING;
+  lcd_display->clear();
+  fillDisplayFields();
+}
+
+void
 cMode::Stop() {
+  gpio_put(HEATER_PIN, _off);
   updateStatus();
   while(true) {
+    updatePower();
     updateTemp();
     }
   }
