@@ -58,10 +58,10 @@ cMode::getAlcohol(const std::map<float, float>& map) {
 void
 cMode::updateAlcConcentration(const std::map<float, float>& map) {
   float alc_percentage = getAlcohol(map);
-  char spirit[6];
-  memset(spirit, 0, sizeof(spirit));
-  sprintf(spirit, "%2.2f%% ", alc_percentage);
-  lcd_display->printLine(2, sizeof(TEMP)+7 , spirit);
+  char buffer[6];
+  memset(buffer, 0, sizeof(buffer));
+  sprintf(buffer, "\xDA%05.2f%%", alc_percentage);
+  lcd_display->printLine(2, sizeof(TEMP)+7 , buffer);
 }
 
 void
