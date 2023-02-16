@@ -36,6 +36,7 @@ class cDisplay
   public:
     cDisplay();
     void Init();
+    void setBacklight(int);
     eWorkmodes selectMode();
     void clear(void);
     void clearLine(int line);

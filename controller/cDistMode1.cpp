@@ -15,7 +15,8 @@ cDistMode1::Start() {
     updateTemp();
     updatePower();
     updateStatus();
-    if(mStatus != eRUNNING) {return;}
+    updateAlcConcentration(vapour);
+    if(mStatus != eRUNNING) {return;} //check for hardware errors
 #ifdef DEBUG
     printValues();
 #endif

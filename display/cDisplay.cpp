@@ -28,6 +28,12 @@ cDisplay::printLine(int line, int pos, const char* text) {
 
 
 void
+cDisplay::setBacklight(int flag) {
+  display->setBacklight(flag);
+  }
+
+
+void
 cDisplay::Init() {
 
   display->clear();

@@ -6,6 +6,7 @@ set(CONTROLLER_SOURCES
   cRectMode1.cpp
   cRectMode2.cpp
   cController.cpp
+  percentage.cpp
   )
 #
 add_library(hd_controller

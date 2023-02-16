@@ -21,12 +21,13 @@ cMode::setDisplay(std::shared_ptr<cDisplay> _display) {
   lcd_display = _display;
   }
 
+
 void
-cMode::fillDisplayFields(){
+cMode::fillDisplayFields() {
   lcd_display->printLine(2, 0, TEMP);
   lcd_display->printLine(1, 0, ELECTRICITY);
   lcd_display->printLine(3, 0, STATUS);
-}
+  }
 
 
 void
@@ -38,9 +39,31 @@ cMode::updateTemp() {
   lcd_display->printLine(2, sizeof(TEMP), temp);
   }
 
+
 void
 cMode::updatePower() {
+  char _power[] = "230V 13A 3000W";
+  lcd_display->printLine(1, sizeof(ELECTRICITY), _power);
+  }
 
+float
+cMode::getAlcohol(const std::map<float, float>& map) {
+  if (mStatus != eRUNNING) { return 0; }
+  if ( (currentTemp > maxTemp) || (currentTemp < minTemp) ) { return 0; }
+
+  auto _val = map.find(currentTemp);
+  if(_val != map.end()) { return _val->second; }
+
+  return map.lower_bound(currentTemp)->second;
+}
+
+void
+cMode::updateAlcConcentration(const std::map<float, float>& map) {
+  float alc_percentage = getAlcohol(map);
+  char spirit[6];
+  memset(spirit, 0, sizeof(spirit));
+  sprintf(spirit, "%.2f%% ", alc_percentage);
+  lcd_display->printLine(2, sizeof(TEMP)+8 , spirit);
 }
 
 void
@@ -58,8 +81,9 @@ cMode::updateStatus() {
     default:
       lcd_display->printLine(3, sizeof(STATUS), "N/A");
       break;
+    }
   }
-}
+
 
 void
 cMode::Start() {
@@ -67,29 +91,33 @@ cMode::Start() {
   mStatus = eRUNNING;
   lcd_display->clear();
   fillDisplayFields();
-}
+  }
+
+
 #ifdef COOLING_VALVE
 void
-cMode::turnOffCooling(){
+cMode::turnOffCooling() {
 
-}
+  }
 #endif
 
 void
 cMode::Stop() {
   gpio_put(HEATER_PIN, _off);
+#ifdef COOLING_VALVE
   if (mStatus == eRUNNING) {mStatus = eFINISHING;}
   updateStatus();
-#ifdef COOLING_VALVE
   for(int i=0; i<120; i++) {
+    if(currentTemp < 50.0) {break;}
     sleep_ms(500);
     updatePower();
     updateTemp();
-  }
+    }
   turnOffCooling();
+#endif
   mStatus = eSUCCESS;
   updateStatus();
-#endif
+//  lcd_display->setBacklight(_off);
   while(true) {
     updatePower();
     updateTemp();
