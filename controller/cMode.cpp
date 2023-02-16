@@ -50,10 +50,8 @@ float
 cMode::getAlcohol(const std::map<float, float>& map) {
   if (mStatus != eRUNNING) { return 0; }
   if ( (currentTemp > maxTemp) || (currentTemp < minTemp) ) { return 0; }
-
   auto _val = map.find(currentTemp);
   if(_val != map.end()) { return _val->second; }
-
   return map.lower_bound(currentTemp)->second;
 }
 
@@ -62,8 +60,8 @@ cMode::updateAlcConcentration(const std::map<float, float>& map) {
   float alc_percentage = getAlcohol(map);
   char spirit[6];
   memset(spirit, 0, sizeof(spirit));
-  sprintf(spirit, "%.2f%% ", alc_percentage);
-  lcd_display->printLine(2, sizeof(TEMP)+8 , spirit);
+  sprintf(spirit, "%2.2f%% ", alc_percentage);
+  lcd_display->printLine(2, sizeof(TEMP)+7 , spirit);
 }
 
 void
