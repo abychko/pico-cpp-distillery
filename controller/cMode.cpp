@@ -85,6 +85,8 @@ cMode::updateStatus() {
 
 void
 cMode::Start() {
+  gpio_init(HEATER_PIN);
+  gpio_set_dir(HEATER_PIN, GPIO_OUT);
   gpio_put(HEATER_PIN, _on);
   mStatus = eRUNNING;
   lcd_display->clear();

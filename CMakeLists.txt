@@ -34,7 +34,7 @@ set(LCD_ADDRESS 0x38)
 #
 set(I2C_SPEED 100000)
 #
-set(HEATER_PIN 13)
+set(HEATER_PIN 12)
 set(HEATING_POWER_MAX 3000)  # max heating power in Watts
 set(HEATING_POWER 1500)      # normal heating power
 set(AC_VOLTAGE 220)          # actually it's RMS, please note

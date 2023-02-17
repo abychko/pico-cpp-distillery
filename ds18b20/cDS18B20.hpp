@@ -11,7 +11,7 @@
 #endif
 
 #ifndef t_vector_size
-#define t_vector_size 8
+#define t_vector_size 4
 #endif
 
 #ifndef SENSOR_RES
