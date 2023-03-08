@@ -42,7 +42,17 @@ set(AC_FREQUENCY 50)
 #
 set(ONEWIRE_PIN 15) # for DS18B20 temperature sensor
 #
-set(COOLING_VALVE ON)
+set(UART_TX_PIN 0) # UART default TX PIN
+set(UART_RX_PIN 1) # UART default RX PIN
+set(UART_ID uart0)
+# from datasheet
+set(UART_BAUD_RATE 9600)
+set(UART_DATA_BITS 8)
+set(UART_STOP_BITS 1)
+set(UART_PARITY UART_PARITY_NONE)
+#
+set(COOLING_VALVE OFF)
+#
 if(COOLING_VALVE)
   add_definitions(-DCOOLING_VALVE)
 endif()
@@ -54,11 +64,13 @@ include_directories(controller)
 include_directories(display)
 include_directories(ds18b20)
 include_directories(heater)
+include_directories(energymon)
 #
 add_subdirectory(controller)
 add_subdirectory(display)
 add_subdirectory(ds18b20)
 add_subdirectory(heater)
+add_subdirectory(energymon)
 #
 set(SOURCES
     main.cpp
