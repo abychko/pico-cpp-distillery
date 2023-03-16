@@ -5,6 +5,7 @@
 #include <cDS18B20.hpp>
 #include <cDisplay.hpp>
 #include <eStatus.hpp>
+#include <cEnergyMon.hpp>
 #include <memory>
 
 #include <map>
@@ -32,7 +33,6 @@ constexpr uint _off = 0;
 #define RUNNINGSTR  "In Progress"
 #endif
 
-
 class cMode
   {
   public:
@@ -52,9 +52,12 @@ class cMode
     void updateAlcConcentration(const std::map<float, float>&);
     float getAlcohol(const std::map<float, float>&);
 //
+    std::unique_ptr<cEnergyMon> mEnergyMon;
     std::unique_ptr<cDS18B20> mDS18B20;
     float                     stopTemp;
     float                     currentTemp;
+    float                     volts;
+    float                     ampers;
     std::shared_ptr<cDisplay> lcd_display;
     enum eStatus              mStatus;
   };

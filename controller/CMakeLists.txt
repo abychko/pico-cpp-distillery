@@ -25,4 +25,5 @@ target_link_libraries(hd_controller
   hd_ds18b20
   hd_display
   hd_heater
+  hd_em
   )

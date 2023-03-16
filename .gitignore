@@ -13,3 +13,4 @@ generated
 *.hex
 *.uf2
 *.map
+out.txt

@@ -2,8 +2,8 @@
 #include <cstdio>
 
 cDistMode1::cDistMode1() {
-  stopTemp = 100.0;
-  currentTemp = mDS18B20->getTemp();
+  stopTemp = 98.0;
+  currentTemp = 0;                                // mDS18B20->getTemp();
   }
 
 
@@ -12,11 +12,13 @@ cDistMode1::Start() {
   cMode::Start();
   cMode::lcd_display->printLine(0, 0, DIST1MODE);
   while(currentTemp < stopTemp) {
-    updateTemp();
+//  updateTemp();
     updatePower();
     updateStatus();
     updateAlcConcentration(vapour);
-    if(mStatus != eRUNNING) {return;} //check for hardware errors
+    if(mStatus != eRUNNING) {                     //check for hardware errors
+      return;
+      }
 #ifdef DEBUG
     printValues();
 #endif

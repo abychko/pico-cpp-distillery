@@ -2,10 +2,11 @@
 #include <cstdio>
 
 cMode::cMode() {
-  stopTemp = 0;
+  stopTemp    = 0;
   currentTemp = 0;
   mDS18B20    = std::make_unique<cDS18B20>();
-  mStatus = eSUCCESS;
+  mEnergyMon  = std::make_unique<cEnergyMon>();
+  mStatus     = eSUCCESS;
   }
 
 
@@ -42,9 +43,26 @@ cMode::updateTemp() {
 
 void
 cMode::updatePower() {
-  char _power[] = "230V 13A 3000W";
-  lcd_display->printLine(1, sizeof(ELECTRICITY), _power);
+  char powerText[20];
+  mEnergyMon->requestMetrics();
+  float _voltage = mEnergyMon->getVoltage();
+  float _current = mEnergyMon->getCurrent();
+  float _power =   mEnergyMon->getPower();
+
+#ifdef DEBUG
+  printf("Volt=%.1f, Amp=%.3f, W=%.1f\n", _voltage, _current, _power);
+#endif
+
+  memset(powerText, 0, sizeof(powerText));
+  if( (_voltage == -1.0) || (_current == -1.0) ) {
+    sprintf(powerText, "EMon ERROR     ");
+    }
+  else {
+    sprintf(powerText, "%.1fv %06.1fW", _voltage, _power);
+    }
+  lcd_display->printLine(1, sizeof(ELECTRICITY), powerText);
   }
+
 
 float
 cMode::getAlcohol(const std::map<float, float>& map) {
@@ -53,7 +71,8 @@ cMode::getAlcohol(const std::map<float, float>& map) {
   auto _val = map.find(currentTemp);
   if(_val != map.end()) { return _val->second; }
   return map.lower_bound(currentTemp)->second;
-}
+  }
+
 
 void
 cMode::updateAlcConcentration(const std::map<float, float>& map) {
@@ -62,7 +81,8 @@ cMode::updateAlcConcentration(const std::map<float, float>& map) {
   memset(buffer, 0, sizeof(buffer));
   sprintf(buffer, "\xDA%05.2f%%", alc_percentage);
   lcd_display->printLine(2, sizeof(TEMP)+7 , buffer);
-}
+  }
+
 
 void
 cMode::updateStatus() {

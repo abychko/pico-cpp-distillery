@@ -16,7 +16,6 @@ target_compile_definitions(hd_em
   UART_PARITY=${UART_PARITY}
   UART_DATA_BITS=${UART_DATA_BITS}
   UART_STOP_BITS=${UART_STOP_BITS}
-  UART_PARITY=${UART_PARITY}
   )
 
 target_link_libraries(hd_em

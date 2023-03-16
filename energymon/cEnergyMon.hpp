@@ -1,30 +1,26 @@
 #ifndef __cEnergy_Monitor_hpp__
 #define __cEnergy_Monitor_hpp__
 
-#define DEFAULT_READ_TIMEOUT 1000
-#define ERROR_VALUE -1.0
+#include "pico/float.h"
+#include <vector>
 
-const int
-DEFAULT_ADDR = 0xF8;
 /*
   0xF8 is used as the general address
   (The address range of the slave is 0x01-0xF7)
 */
 
-struct emCommand {
-  int command;
-  int addr[4];
-  int data;
-  int crc;
-};
-
-class cEnergyMon {
+class cEnergyMon
+  {
   public:
     cEnergyMon();
-    ~cEnergyMon();
-
+    void requestMetrics();
+    float getVoltage();
+    float getCurrent();
+    float getPower();
   private:
-    int emSRC(int *data);
-};
+    void readMeasures();
+    bool checkResult();
+    std::vector<int> mPowerMetrics;
 
+  };
 #endif
